@@ -1,0 +1,35 @@
+<section class="order">
+    <div class=" flex flex-col space-y-10 justify-center items-center">
+        <h1 class="font-bold text-2xl ">Confirm order</h1>
+        <div class=" bg-green w-96 shadow-xl rounded p-5">
+          <table class="mx-auto w-96 table-fixed">
+              <tr>
+                  <td class="px-2 py-2 font-bold text-xl">Total  items</td>
+                  <td>:</td>
+                  <td><%=order.totalItem%></td>
+              </tr>
+              <tr>
+                <td class="px-2 py-2 font-bold text-xl">Total amount</td>
+                <td>:</td>
+                <td><%=order.totalAmount%></td>
+            </tr>
+            <tr>
+                <td class="px-2 py-2 font-bold text-xl">Address</td>
+                <td>:</td>
+                <td class="flex"><%=order.addrees%></td>
+            </tr>
+            <tr>
+                <td class="px-2 py-2 font-bold text-xl">Phone Number</td>
+                <td>:</td>
+                <td><%=order.phoneNumber%></td>
+            </tr>
+            <tr>
+                <td class="px-2 py-2 font-bold text-xl">Payment mode</td>
+                <td>:</td>
+                <td><%=order.paymentMode%></td>
+            </tr>
+          </table>
+          <a href="/customer/orderConfirm/<%=order._id%>" id="orderConfirm" class="btn mt-8 text-center rounded-full px-4 py-2 inline-block">Confirm order</a>
+        </div>
+    </div>
+</section>

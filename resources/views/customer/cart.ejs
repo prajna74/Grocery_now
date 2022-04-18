@@ -1,0 +1,62 @@
+<section class="cart-items">
+       <%if(messages.error){%>
+       <span class="font-bold text-red-500 text-xl"><%messages.error%></span>
+       <%}%>
+       <%if(!session.cart){%>
+              <div class="container mx-auto mt-8 items-center text-center">
+                  <h1 class="text-3xl font-bold">Cart empty!!!</h1>
+                  <p class="text-xl font-bold mb-8">Sorry the cart is empty!You haven't ordered anything.</p>
+                  <a href="/" class="font-bold px-6 py-2 btn rounded-full text-white">View list</a>
+                  <img src="/images/cart-empty.png" class="mt-8 mx-auto w-4/12" alt="">
+              </div>
+              <%} else {%>
+       <div class="container mx-auto w-1/2 py-16 mb-8">
+              <div class="flex items-center text-center">
+                 <img src="/images/cart.png" alt="">
+                 <h1 class="text-2xl font-bold ">Order Summary</h1>
+              </div>
+              <div class="mt-8">
+                <h1 class="text-xl font-bold">Grocery List</h1>
+                <%for(let sess of Object.values(session.cart.items)){%>
+                <div class="flex items-center  content-between mt-8 mb-8">
+                   <div class="flex-1 p-0  mx-auto">
+                          <img src="/images/home.png" class="h-40" alt="">
+                   </div>
+                   <div class="flex-1  mx-auto">
+                     <h2 class="font-bold text-xl"><%=sess.item.name%></h2>
+                   </div>
+                   <div class="flex-1  mx-auto">
+                          <h2 class="font-bold"><%=sess.qty%></h2>
+                   </div>
+                   <div class="flex-1  mx-auto">
+                          <h1 class="font-bold text-xl"><%=sess.amount%></h1>
+                   </div>
+                   <div class="flex-1  mx-auto ">
+                     <a  href="/deleteItem/<%=sess.item._id%>" id="delete-btn" data-item=<%=sess.item._id%> class="delete-btn inline-block py-2 px-4 font-bold  text-xl rounded-full">Delete</a>
+                   </div>
+                </div>
+                <%}%>
+              </div>
+              <hr>
+              <div class="text-right">
+                     <span class="text-2xl font-bold mr-24"><%=session.cart.totalAmount%></span>
+              </div>  
+              <%if(user) {%>           
+              <div class="mt-8 text-right">
+                     <form action="/customer/order" method="POST">
+                      <input type="text" name="address" class="border border-gray-400 px-6 py-2 rounded" placeholder="Address"></br>
+                      <input type="text" name="phone" class="border border-gray-400 px-6 py-2 rounded mt-2" placeholder="Phone Number">
+                      <div class="mt-4 btn-order">
+                          <button class=" text-white font-bold px-6 py-2 rounded-full" type="submit">Order now</button>
+                      </div>
+                     </form>
+              </div>
+              <%} else{%>
+                     <div class="mt-4 text-right">
+                     <a href="/login" class="font-bold px-6 py-2 btn rounded-full text-white">Login to continue</a>
+                     </div>
+              <%}%>
+            
+       </div>
+       <%}%>
+</section>

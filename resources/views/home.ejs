@@ -1,0 +1,40 @@
+<section class="hero py-16">
+  <%if(messages.success){%>
+    <span id="success-msg" class="text-2xl text-green-800 font-bold">Order placed succesfully</span>
+     <%}%>
+ <div class="container mx-auto items-center justify-around flex mt-4">
+   <div class="w-1/2">
+       <h1 class="font-bold text-3xl">Grocery Now</h1>
+       <p class="text-xl mt-2">One stop for all your daily needs.<br>Get groceries at your door step withoutany hustle.</p>
+       <a href="" class="btn inline-block  font-bold  py-2 px-4 rounded-full text-center mt-4">Order now</a>
+   </div>
+   <div class="w-1/2">
+       <img src="/images/home.png" alt="">
+   </div>
+ </div>
+</section>
+<section class="grocery_list">
+  <div class="container mx-auto mb-12">
+  <h1 class="text-3xl font-bold mt-8 mb-8">Groceries</h1>
+  <div class="grid grid-cols-4 row-gap-12 col-gap-12">
+   <% for(var i=0;i<groceries.length;i++){%>
+    <div class="w-64 mb-12">
+      <div>
+        <img src="/images/home.png" alt="" class="h-40 ">
+      </div>
+      <div class="text-center mt-4">
+        <h1 class="text-xl font-bold"><%=groceries[i].name%></h1>
+        <div class="flex justify-between">
+        <h2 class="text-l  font-bold">₹<span id="price<%=i%>"><%=groceries[i].price%></span></h2>
+        <div><button  data-price=<%=groceries[i].price%> class="btn inc rounded-full px-1 items-center">+</button><span id="quant<%=i%>" class=" text-xl font-bold p-2"><%=groceries[i].quantity%></span><button data-price=<%=groceries[i].price%> class="btn dec items-center rounded-full px-1">-</button></div>
+       </div>
+       <button data-grocery=<%=JSON.stringify(groceries[i])%>  class="mx-auto add-to-cart flex items-center justify-between px-4 py-2 rounded-full">
+         <span>+</span>
+         <span>Add</span>
+       </button>
+      </div>
+    </div>
+ <%}%>
+ </div>
+</div>
+</section>
